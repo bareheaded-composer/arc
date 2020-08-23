@@ -1,9 +1,9 @@
 package main
 
 import (
-	"arc/env"
-	"arc/handlers"
-	"arc/managers"
+	"arc/src/env"
+	"arc/src/handlers"
+	"arc/src/managers"
 	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/gin-gonic/gin"

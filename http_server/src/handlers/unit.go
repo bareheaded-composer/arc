@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"arc/model"
+	"arc/src/model"
 	"github.com/astaxie/beego/logs"
 	"github.com/gin-gonic/gin"
 	"net/http"

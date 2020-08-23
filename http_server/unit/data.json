@@ -96,16 +96,34 @@
       "solution": "动态规划",
       "purpose": "求路径最小和",
       "comment": "路径形成条件: 从上到下隔一行走。",
-      "code": "hello~"
+      "code": "\nfunc minFallingPathSum(A [][]int) int {\n\trows,columns := len(A),len(A[0])\n\tminSum := get2DSlice(rows, columns)\n\tfor column := 0; column < columns; column++ {\n\t\tminSum[0][column] = A[0][column]\n\t}\n\tfor row := 1; row < rows; row++ {\n\t\tfor column := 0; column < columns; column++ {\n\t\t\tminSum[row][column] = min(minSum[row-1][column])\n\t\t\tif column-1 >= 0 {\n\t\t\t\tminSum[row][column] = min(minSum[row][column], minSum[row-1][column-1])\n\t\t\t}\n\t\t\tif column+1 <= columns-1 {\n\t\t\t\tminSum[row][column] = min(minSum[row][column], minSum[row-1][column+1])\n\t\t\t}\n\t\t\tminSum[row][column] += A[row][column]\n\t\t}\n\t}\n\treturn min(minSum[rows-1]...)\n}\n\nfunc get2DSlice(rows, column int) [][]int {\n\tslice := make([][]int, rows)\n\tfor i := 0; i < len(slice); i++ {\n\t\tslice[i] = make([]int, column)\n\t}\n\treturn slice\n}\n\nfunc min(arr ...int) int {\n\tif len(arr) == 1 {\n\t\treturn arr[0]\n\t}\n\ta := arr[0]\n\tb := min(arr[1:]...)\n\tif a > b {\n\t\treturn b\n\t}\n\treturn a\n}\n"
     },
     {
       "topic": "从上到下打印二叉树",
       "link": "https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/",
       "main_body": "二叉树",
       "solution": "层序遍历",
-      "purpose": "求二叉树的所有节点形成的数组",
+      "purpose": "求所有节点形成的数组",
       "comment": "数组形成条件: 二叉树层外从上到下、层内从左到右加入节点。",
       "code": "hello~"
+    },
+    {
+      "topic": "最大黑方阵",
+      "link": "https://leetcode-cn.com/problems/max-black-square-lcci/",
+      "main_body": "矩阵",
+      "solution": "动态规划",
+      "purpose": "求最大方阵位置",
+      "comment": "方阵形成条件: 可以是空心的。",
+      "code": "func findSquare(matrix [][]int) []int {\n\tx, y, size := getMaxBlankSquareCoordinateAndSize(matrix)\n\tif x == -1 {\n\t\treturn []int{}\n\t}\n\treturn []int{x - size + 1, y - size + 1, size}\n}\n\nfunc getMaxBlankSquareCoordinateAndSize(matrix [][]int) (int, int, int) {\n\tmaxWidth, maxHeight := getMaxWidthAndMaxHeight(matrix)\n\trows, cols := getRowsAndCols(matrix)\n\tmaxBlankSquareX, maxBlankSquareY, maxSize := -1, -1, 0\n\tfor i := 0; i < rows; i++ {\n\t\tfor t := 0; t < cols; t++ {\n\t\t\tcurBlankSquareSize := getBlankSquareSize(maxWidth, maxHeight, i, t)\n\t\t\tif curBlankSquareSize > maxSize {\n\t\t\t\tmaxBlankSquareX = i\n\t\t\t\tmaxBlankSquareY = t\n\t\t\t\tmaxSize = curBlankSquareSize\n\t\t\t}\n\t\t}\n\t}\n\treturn maxBlankSquareX, maxBlankSquareY, maxSize\n}\n\nfunc getMaxWidthAndMaxHeight(matrix [][]int) ([][]int, [][]int) {\n\trows, cols := getRowsAndCols(matrix)\n\tmaxWidth := get2DSlice(rows, cols)\n\tmaxHeight := get2DSlice(rows, cols)\n\tmaxWidth[0][0] = matrix[0][0] ^ 1\n\tmaxHeight[0][0] = matrix[0][0] ^ 1\n\tfor i := 1; i < rows; i++ {\n\t\tmaxWidth[i][0] = matrix[i][0] ^ 1\n\t\tif matrix[i][0] == 0 {\n\t\t\tmaxHeight[i][0] = maxHeight[i-1][0] + 1\n\t\t}\n\t}\n\tfor t := 1; t < cols; t++ {\n\t\tmaxHeight[0][t] = matrix[0][t] ^ 1\n\t\tif matrix[0][t] == 0 {\n\t\t\tmaxWidth[0][t] = maxWidth[0][t-1] + 1\n\t\t}\n\t}\n\tfor i := 1; i < rows; i++ {\n\t\tfor t := 1; t < cols; t++ {\n\t\t\tif matrix[i][t] == 0 {\n\t\t\t\tmaxHeight[i][t] = maxHeight[i-1][t] + 1\n\t\t\t\tmaxWidth[i][t] = maxWidth[i][t-1] + 1\n\t\t\t}\n\t\t}\n\t}\n\treturn maxWidth, maxHeight\n}\n\nfunc getBlankSquareSize(maxWidth, maxHeight [][]int, x, y int) int {\n\tmaxSize := 0\n\tfor size := 1; size <= min(maxHeight[x][y], maxWidth[x][y]); size++ {\n\t\tif maxHeight[x][y-size+1] >= size && maxWidth[x-size+1][y] >= size {\n\t\t\tmaxSize = size\n\t\t}\n\t}\n\treturn maxSize\n}\n\nfunc getRowsAndCols(matrix [][]int) (int, int) {\n\tif len(matrix) == 0 {\n\t\treturn 0, 0\n\t}\n\treturn len(matrix), len(matrix[0])\n}\n\nfunc get2DSlice(rows, column int) [][]int {\n\tslice := make([][]int, rows)\n\tfor i := 0; i < len(slice); i++ {\n\t\tslice[i] = make([]int, column)\n\t}\n\treturn slice\n}\n\nfunc min(arr ...int) int {\n\tif len(arr) == 1 {\n\t\treturn arr[0]\n\t}\n\ta, b := arr[0], min(arr[1:]...)\n\tif a > b {\n\t\treturn b\n\t}\n\treturn a\n}"
+    },
+    {
+      "topic": "搜索二维矩阵",
+      "link": "https://leetcode-cn.com/problems/search-a-2d-matrix/",
+      "main_body": "矩阵",
+      "solution": "二分查找",
+      "purpose": "求单数存在性",
+      "comment": "二维矩阵约束条件: 元素从左到右升序排列，每行的首元素大于上一行的末元素。",
+      "code": "func searchMatrix(matrix [][]int, target int) bool {\n\trows, _ := getRowsAndCols(matrix)\n\tfor i := 0; i < rows; i++ {\n\t\tif hasExistedInSortedArray(matrix[i], target) {\n\t\t\treturn true\n\t\t}\n\t}\n\treturn false\n}\n\nfunc hasExistedInSortedArray(sortedArray []int, target int) bool {\n\tleft, right := 0, len(sortedArray)-1\n\tfor left <= right {\n\t\tmid := (left + right) / 2\n\t\tif sortedArray[mid] == target {\n\t\t\treturn true\n\t\t}\n\t\tif sortedArray[mid] > target {\n\t\t\tright = mid - 1\n\t\t} else {\n\t\t\tleft = mid + 1\n\t\t}\n\t}\n\treturn false\n}\n\nfunc getRowsAndCols(matrix [][]int) (int, int) {\n\tif len(matrix) == 0 {\n\t\treturn 0, 0\n\t}\n\treturn len(matrix), len(matrix[0])\n}"
     }
   ]
 }

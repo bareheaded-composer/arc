@@ -1,5 +1,5 @@
 package handlers
 
-import "arc/managers"
+import "arc/src/managers"
 
 var GlobalTableManager *managers.TableManager
