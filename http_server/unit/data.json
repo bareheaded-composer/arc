@@ -1,5 +1,4 @@
-{
-  "data": [
+ [
     {
       "topic": "hello_word",
       "link": "http://xxx.com",
@@ -46,7 +45,7 @@
       "link": "https://leetcode-cn.com/problems/two-sum/",
       "main_body": "数组",
       "solution": "双指针",
-      "purpose": "求组成指定和的几个整数",
+      "purpose": "求组成指定和的 2 个整数",
       "code": "喔喔喔"
     },
     {
@@ -54,7 +53,7 @@
       "link": " https://leetcode-cn.com/problems/3sum/",
       "main_body": "数组",
       "solution": "双指针",
-      "purpose": "求组成指定和的几个整数",
+      "purpose": "求组成指定和的 3 个整数",
       "code": "niu bi"
     },
     {
@@ -62,7 +61,7 @@
       "link": " https://leetcode-cn.com/problems/4sum/",
       "main_body": "数组",
       "solution": "双指针",
-      "purpose": "求组成指定和的几个整数",
+      "purpose": "求组成指定和的 4 个整数",
       "code": "niu bi wo wo"
     },
     {
@@ -124,7 +123,108 @@
       "purpose": "求单数存在性",
       "comment": "二维矩阵约束条件: 元素从左到右升序排列，每行的首元素大于上一行的末元素。",
       "code": "func searchMatrix(matrix [][]int, target int) bool {\n\trows, _ := getRowsAndCols(matrix)\n\tfor i := 0; i < rows; i++ {\n\t\tif hasExistedInSortedArray(matrix[i], target) {\n\t\t\treturn true\n\t\t}\n\t}\n\treturn false\n}\n\nfunc hasExistedInSortedArray(sortedArray []int, target int) bool {\n\tleft, right := 0, len(sortedArray)-1\n\tfor left <= right {\n\t\tmid := (left + right) / 2\n\t\tif sortedArray[mid] == target {\n\t\t\treturn true\n\t\t}\n\t\tif sortedArray[mid] > target {\n\t\t\tright = mid - 1\n\t\t} else {\n\t\t\tleft = mid + 1\n\t\t}\n\t}\n\treturn false\n}\n\nfunc getRowsAndCols(matrix [][]int) (int, int) {\n\tif len(matrix) == 0 {\n\t\treturn 0, 0\n\t}\n\treturn len(matrix), len(matrix[0])\n}"
-    }
-  ]
-}
+    },
+    {
+      "topic": "搜索二维矩阵 II",
+      "link": "https://leetcode-cn.com/problems/search-a-2d-matrix-ii/",
+      "main_body": "矩阵",
+      "solution": "二分查找",
+      "purpose": "求单数存在性",
+      "comment": "二维矩阵约束条件: 元素从左到右升序排列，从上到下升序排列。",
+      "code": "func searchMatrix(matrix [][]int, target int) bool {\n\trows, _ := getRowsAndCols(matrix)\n\tfor i := 0; i < rows; i++ {\n\t\tif hasExistedInSortedArray(matrix[i], target) {\n\t\t\treturn true\n\t\t}\n\t}\n\treturn false\n}\n\nfunc hasExistedInSortedArray(sortedArray []int, target int) bool {\n\tleft, right := 0, len(sortedArray)-1\n\tfor left <= right {\n\t\tmid := (left + right) / 2\n\t\tif sortedArray[mid] == target {\n\t\t\treturn true\n\t\t}\n\t\tif sortedArray[mid] > target {\n\t\t\tright = mid - 1\n\t\t} else {\n\t\t\tleft = mid + 1\n\t\t}\n\t}\n\treturn false\n}\n\nfunc getRowsAndCols(matrix [][]int) (int, int) {\n\tif len(matrix) == 0 {\n\t\treturn 0, 0\n\t}\n\treturn len(matrix), len(matrix[0])\n}"
+    },
+    {
+      "topic": "合法二叉搜索树",
+      "link": "https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/",
+      "main_body": "二叉树",
+      "solution": "中序遍历",
+      "purpose": "求二叉搜索性",
+      "comment": "",
+      "code": "const INF = 1000000000000\n\nvar preNodeValue int\n\nfunc isValidBST(root *TreeNode) bool {\n\tpreNodeValue = -INF\n\treturn getIsValidBST(root)\n}\n\nfunc getIsValidBST(root *TreeNode) bool {\n\tif root == nil {\n\t\treturn true\n\t}\n\tif !getIsValidBST(root.Left) {\n\t\treturn false\n\t}\n\tif preNodeValue >= root.Val {\n\t\treturn false\n\t}\n\tpreNodeValue = root.Val\n\tif !getIsValidBST(root.Right) {\n\t\treturn false\n\t}\n\treturn true\n}"
+    },
+    {
+      "topic": "合法二叉搜索树",
+      "link": "https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/",
+      "main_body": "二叉树",
+      "solution": "先序遍历",
+      "purpose": "求二叉搜索性",
+      "comment": "",
+      "code": "const INF = 1000000000000\n\nfunc isValidBST(root *TreeNode) bool {\n\treturn getIsValidBST(root, -INF, INF)\n}\n\nfunc getIsValidBST(root *TreeNode, minValue, maxValue int) bool {\n\tif root == nil {\n\t\treturn true\n\t}\n\treturn isInInterval(root.Val, minValue, maxValue) &&\n\t\tgetIsValidBST(root.Left, minValue, root.Val) &&\n\t\tgetIsValidBST(root.Right, root.Val, maxValue)\n}\n\nfunc isInInterval(value int, minValue, maxValue int) bool {\n\treturn minValue < value && value < maxValue\n}"
+    },
+    {
+      "topic": "平衡二叉树",
+      "link": "https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/",
+      "main_body": "二叉树",
+      "solution": "后序遍历",
+      "purpose": "求二叉平衡性",
+      "code": "const unBalancedFlag = -1\n\nfunc isBalanced(root *TreeNode) bool {\n\treturn getBalancedHeight(root) != unBalancedFlag\n}\n\nfunc getBalancedHeight(root *TreeNode) int {\n\tif root == nil {\n\t\treturn 0\n\t}\n\tleftBalancedHeight := getBalancedHeight(root.Left)\n\trightBalancedHeight := getBalancedHeight(root.Right)\n\n\tif leftBalancedHeight == unBalancedFlag || rightBalancedHeight == unBalancedFlag {\n\t\treturn unBalancedFlag\n\t}\n\tif abs(leftBalancedHeight-rightBalancedHeight) <= 1 {\n\t\treturn max(rightBalancedHeight, leftBalancedHeight) + 1\n\t}\n\treturn unBalancedFlag\n}\n\nfunc max(a, b int) int {\n\tif a > b {\n\t\treturn a\n\t}\n\treturn b\n}\nfunc abs(a int) int {\n\tif a > 0 {\n\t\treturn a\n\t}\n\treturn -a\n}"
+    },
+    {
+      "topic": "二叉树的完全性检验",
+      "link": "https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/",
+      "main_body": "二叉树",
+      "solution": "先序遍历",
+      "purpose": "求二叉完全性",
+      "code": "func isCompleteTree(root *TreeNode) bool {\n\tif root == nil {\n\t\treturn true\n\t}\n\tleftTreeHeight, rightTreeHeight := getHeight(root.Left), getHeight(root.Right)\n\treturn leftTreeHeight == rightTreeHeight && isFullTree(root.Left) && isCompleteTree(root.Right) ||\n\t\tleftTreeHeight == rightTreeHeight+1 && isCompleteTree(root.Left) && isFullTree(root.Right)\n}\n\nfunc isFullTree(root *TreeNode) bool {\n\tcountOfNode := getCountOfNode(root)\n\theight := getHeight(root)\n\treturn (1<<byte(height))-1 == countOfNode\n}\n\nfunc getCountOfNode(root *TreeNode) int {\n\tif root == nil {\n\t\treturn 0\n\t}\n\treturn getCountOfNode(root.Left) + getCountOfNode(root.Right) + 1\n}\n\nfunc getHeight(root *TreeNode) int {\n\tif root == nil {\n\t\treturn 0\n\t}\n\treturn max(getHeight(root.Left), getHeight(root.Right)) + 1\n}\n\nfunc max(a, b int) int {\n\tif a > b {\n\t\treturn a\n\t}\n\treturn b\n}"
+    },
+    {
+      "topic": "单值二叉树",
+      "link": "https://leetcode-cn.com/problems/univalued-binary-tree/",
+      "main_body": "二叉树",
+      "solution": "先序遍历",
+      "purpose": "求单值性",
+      "code": "func isUnivalTree(root *TreeNode) bool {\n\tif root == nil {\n\t\treturn true\n\t}\n\treturn getIsUnivalTree(root, root.Val)\n}\n\nfunc getIsUnivalTree(root *TreeNode, unival int) bool {\n\tif root == nil {\n\t\treturn true\n\t}\n\treturn root.Val == unival && getIsUnivalTree(root.Left, root.Val) && getIsUnivalTree(root.Right, root.Val)\n}"
+    },
+    {
+      "topic": "树的子结构",
+      "link": "https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/",
+      "main_body": "双二叉树",
+      "solution": "先序遍历",
+      "purpose": "求子结构性",
+      "comment": "子结构约束条件: 模板树包括样例树。",
+      "code": "func isSubStructure(A *TreeNode, B *TreeNode) bool {\n\tif B == nil || A == nil {\n\t\treturn false\n\t}\n\treturn A.Val == B.Val && isSubStructureWithSpecificRoot(A.Left, B.Left) && isSubStructureWithSpecificRoot(A.Right, B.Right) ||\n\t\tisSubStructure(A.Left, B) ||\n\t\tisSubStructure(A.Right, B)\n}\n\nfunc isSubStructureWithSpecificRoot(specificRoot, B *TreeNode) bool {\n\tif B == nil {\n\t\treturn true\n\t}\n\tif specificRoot == nil {\n\t\treturn false\n\t}\n\treturn specificRoot.Val == B.Val && isSubStructureWithSpecificRoot(specificRoot.Left, B.Left) && isSubStructureWithSpecificRoot(specificRoot.Right, B.Right)\n}"
+    },
+   {
+     "topic": "对称的二叉树",
+     "link": "https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof/",
+     "main_body": "二叉树",
+     "solution": "先序遍历",
+     "purpose": "求二叉对称性",
+     "code": "func isSymmetric(root *TreeNode) bool {\n\tif root==nil{\n\t\treturn true\n\t}\n\treturn isTwoTreeSymmetric(root.Left,root.Right)\n}\n\nfunc isTwoTreeSymmetric(treeA *TreeNode, treeB *TreeNode) bool {\n\tif treeA==nil && treeB==nil{\n\t\treturn true\n\t}\n\tif treeA==nil || treeB==nil{\n\t\treturn false\n\t}\n\treturn treeA.Val==treeB.Val && isTwoTreeSymmetric(treeA.Left,treeB.Right) && isTwoTreeSymmetric(treeA.Right,treeB.Left)\n}"
+   },
+   {
+    "topic": "合法二叉搜索树",
+    "link": "https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/",
+    "main_body": "二叉树",
+    "solution": "中序遍历",
+    "purpose": "求二叉搜索性",
+    "code": "func isSymmetric(root *TreeNode) bool {\n\tif root==nil{\n\t\treturn true\n\t}\n\treturn isTwoTreeSymmetric(root.Left,root.Right)\n}\n\nfunc isTwoTreeSymmetric(treeA *TreeNode, treeB *TreeNode) bool {\n\tif treeA==nil && treeB==nil{\n\t\treturn true\n\t}\n\tif treeA==nil || treeB==nil{\n\t\treturn false\n\t}\n\treturn treeA.Val==treeB.Val && isTwoTreeSymmetric(treeA.Left,treeB.Right) && isTwoTreeSymmetric(treeA.Right,treeB.Left)\n}"
+  },
+  {
+    "topic": "特定深度节点链表",
+    "link": "https://leetcode-cn.com/problems/list-of-depth-lcci/",
+    "main_body": "二叉树",
+    "solution": "先序遍历",
+    "purpose": "求每层节点形成的链表集",
+    "code":"var listHeads []*ListNode\nvar listTails []*ListNode\n\nfunc listOfDepth(tree *TreeNode) []*ListNode {\n\tlistHeads = make([]*ListNode, 0)\n\tlistTails = make([]*ListNode, 0)\n\tformLists(tree, 0)\n\treturn listHeads\n}\n\nfunc formLists(root *TreeNode, nowDepth int) {\n\tif root == nil {\n\t\treturn\n\t}\n\tnode := &ListNode{Val: root.Val}\n\tif nowDepth == len(listTails) {\n\t\tlistTails = append(listTails, node)\n\t\tlistHeads = append(listHeads, node)\n\t} else {\n\t\ttail := listTails[nowDepth]\n\t\ttail.Next = node\n\t\tlistTails[nowDepth] = node\n\t}\n\tformLists(root.Left, nowDepth+1)\n\tformLists(root.Right, nowDepth+1)\n}"
+  },
+   {
+     "topic": "最小高度树",
+     "link": "https://leetcode-cn.com/problems/minimum-height-tree-lcci/",
+     "main_body": "数组",
+     "solution": "先序遍历",
+     "purpose": "求二叉搜索树",
+     "comment": "二叉搜索树限制条件: 高度最小",
+     "code": "class Solution {\n\n    /**\n     * @param Integer[] $nums\n     * @return TreeNode\n     */\n    function sortedArrayToBST($nums) {\n        return $this->getSortedArrayToBST($nums,0,count($nums)-1);\n    }\n\n    function getSortedArrayToBST($nums,$left,$right) {\n        if ($left>$right){\n            return null;\n        }\n        $mid=floor(($left+$right)/2);\n        $root=new TreeNode($nums[$mid]);\n        $root->left = $this->getSortedArrayToBST($nums,$left,$mid-1);\n        $root->right = $this->getSortedArrayToBST($nums,$mid+1,$right);\n        return $root;\n    }\n}"
+   },
+   {
+     "topic": "字符串压缩",
+     "link": "https://leetcode-cn.com/problems/compress-string-lcci/",
+     "main_body": "数组",
+     "solution": "双指针",
+     "purpose": "求压缩后的数组",
+     "code": "func compressString(S string) string {\n\tfirst, last := 0, 0\n\tresult := strings.Builder{}\n\tfor last < len(S) {\n\t\tfor last+1 < len(S) && S[last+1] == S[last] {\n\t\t\tlast++\n\t\t}\n\t\tresult.WriteByte(S[first])\n\t\t//result.WriteString(fmt.Sprintf(\"%d\", last-first+1))\n\t\tresult.WriteString(strconv.Itoa(last-first+1))\n\t\tfirst = last + 1\n\t\tlast = first\n\t}\n\tif result.Len() < len(S) {\n\t\treturn result.String()\n\t}\n\treturn S\n}"
+   }
+ ]
+
 

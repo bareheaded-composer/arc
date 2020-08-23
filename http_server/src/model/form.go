@@ -9,4 +9,5 @@ type FormOfInsertUnit struct {
 	Purpose  string `json:"purpose"`
 	Code     string `json:"code"`
 	Comment string `json:"comment"`
+	Complexity string `json:"complexity"`
 }

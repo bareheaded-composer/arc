@@ -1,8 +1,8 @@
-
 ## 题目
-- [ ] 链接: [最大黑方阵](https://leetcode-cn.com/problems/max-black-square-lcci/)
+- [ ] 标题: [最大黑方阵](https://leetcode-cn.com/problems/max-black-square-lcci/)
 - [ ] 主体: 矩阵
 - [ ] 算法: 动态规划
+- [ ] 时间复杂度: O()
 - [ ] 代码:
 ```go
 func findSquare(matrix [][]int) []int {

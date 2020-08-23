@@ -1,8 +1,8 @@
-
 ## 题目
-- [ ] 链接: [{{.Topic}}]({{.Link}})
+- [ ] 标题: [{{.Topic}}]({{.Link}})
 - [ ] 主体: {{.MainBody}}
 - [ ] 算法: {{.Solution}}
+- [ ] 时间复杂度: O({{.Complexity}})
 - [ ] 代码:
 ```go
 {{.Code|unescaped}}

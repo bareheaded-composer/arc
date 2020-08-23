@@ -15,6 +15,7 @@ func NewTableManager(db *gorm.DB) *TableManager {
 		db: db,
 	}
 }
+
 func (m *TableManager) GetUnits(parameter *model.GetUnitsParameter) ([]*model.Unit, error) {
 	var units []*model.Unit
 	whereSituation := model.Unit{
@@ -26,6 +27,19 @@ func (m *TableManager) GetUnits(parameter *model.GetUnitsParameter) ([]*model.Un
 		return nil, err
 	}
 	return units, nil
+}
+
+func (m *TableManager) GetPurposes(parameter *model.GetUnitsParameter) ([]string, error) {
+	units,err := m.GetUnits(parameter)
+	if err!=nil{
+		logs.Error(err)
+		return nil,err
+	}
+	var purpose []string
+	for _,uint:=range units{
+		purpose = append(purpose,uint.Purpose)
+	}
+	return purpose, nil
 }
 
 func (m *TableManager) InsertIfNotExist(tables ...model.Table) error {

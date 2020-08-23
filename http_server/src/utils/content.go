@@ -9,21 +9,22 @@ import (
 	"io/ioutil"
 )
 
-func MakeFilerContentToFile(targetFileDir string, templateFilePath string, filer model.Filer) error {
-	contentBuffer, err := GetContentBuffer(templateFilePath, filer)
-	if err != nil {
-		logs.Error(err)
-		return err
-	}
 
-	if err := ioutil.WriteFile(
-		fmt.Sprintf("%s/%s", targetFileDir,filer.GetFileName(), ),
-		contentBuffer.Bytes(),
-		0777,
-		);
-		err != nil {
-		logs.Error(err)
-		return err
+func MakeUnitsToFile(targetFileDir string, templateFilePath string, units ...*model.Unit) error {
+	for _,unit := range units{
+		contentBuffer, err := GetContentBuffer(templateFilePath, unit)
+		if err != nil {
+			logs.Error(err)
+			return err
+		}
+		if err := ioutil.WriteFile(
+			fmt.Sprintf("%s/%s_%s_O(%s).md", targetFileDir, unit.Purpose,unit.Solution,unit.Complexity),
+			contentBuffer.Bytes(),
+			0777,
+		); err != nil {
+			logs.Error(err)
+			return err
+		}
 	}
 	return nil
 }
@@ -43,12 +44,12 @@ func GetContentBuffer(templateFilePath string, readerData interface{}) (*bytes.B
 		logs.Error(err)
 		return nil, err
 	}
-	unescaped := func (str string) template.HTML{
+	unescaped := func(str string) template.HTML {
 		return template.HTML(str)
 	}
 	templateObject := template.New("")
 	templateObject.Funcs(map[string]interface{}{
-		"unescaped":unescaped,
+		"unescaped": unescaped,
 	})
 	if _, err := templateObject.Parse(string(templateText)); err != nil {
 		logs.Error(err)
