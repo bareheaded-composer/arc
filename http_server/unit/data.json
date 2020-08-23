@@ -1,0 +1,112 @@
+{
+  "data": [
+    {
+      "topic": "hello_word",
+      "link": "http://xxx.com",
+      "main_body": "数组",
+      "solution": "动态规划",
+      "purpose": "求最长递增子序列",
+      "code": "xxxx"
+    },
+    {
+      "topic": "最长连续递增序列",
+      "link": "https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/",
+      "main_body": "数组",
+      "solution": "动态规划",
+      "purpose": "求最长递增子序列的长度",
+      "code": "xxx"
+    },
+    {
+      "topic": "不同路径 II",
+      "link": "https://leetcode-cn.com/problems/unique-paths-ii/",
+      "main_body": "矩阵",
+      "solution": "动态规划",
+      "purpose": "求路径条数",
+      "code": "xxx",
+      "comment": "路径形成条件: 从右上到右下，只能向右、向下隔一格走。"
+    },
+    {
+      "topic": "二叉树的深度",
+      "link": "https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/",
+      "main_body": "二叉树",
+      "solution": "先序遍历",
+      "purpose": "求深度",
+      "code": "wo shi li xue yue, wo xi huan chi fan"
+    },
+    {
+      "topic": "二叉树的所有路径",
+      "link": "https://leetcode-cn.com/problems/binary-tree-paths/",
+      "main_body": "二叉树",
+      "solution": "先序遍历",
+      "purpose": "求路径",
+      "code": "hahaha"
+    },
+    {
+      "topic": "两数之和",
+      "link": "https://leetcode-cn.com/problems/two-sum/",
+      "main_body": "数组",
+      "solution": "双指针",
+      "purpose": "求组成指定和的几个整数",
+      "code": "喔喔喔"
+    },
+    {
+      "topic": "三数之和",
+      "link": " https://leetcode-cn.com/problems/3sum/",
+      "main_body": "数组",
+      "solution": "双指针",
+      "purpose": "求组成指定和的几个整数",
+      "code": "niu bi"
+    },
+    {
+      "topic": "四数之和",
+      "link": " https://leetcode-cn.com/problems/4sum/",
+      "main_body": "数组",
+      "solution": "双指针",
+      "purpose": "求组成指定和的几个整数",
+      "code": "niu bi wo wo"
+    },
+    {
+      "topic": "回文链表",
+      "link": " https://leetcode-cn.com/problems/palindrome-linked-list-lcci/",
+      "main_body": "链表",
+      "solution": "快慢指针",
+      "purpose": "求回文性",
+      "code": "???"
+    },
+    {
+      "topic": "判断字符是否唯一",
+      "link": "https://leetcode-cn.com/problems/is-unique-lcci/",
+      "main_body": "数组",
+      "solution": "哈希",
+      "purpose": "求唯一性",
+      "code": "???嗯嗯额额"
+    },
+    {
+      "topic": "二进制中1的个数",
+      "link": "https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/",
+      "main_body": "单数",
+      "solution": "位运算",
+      "purpose": "求二进制中1的个数",
+      "code": "hello~"
+    },
+    {
+      "topic": "下降路径最小和",
+      "link": "https://leetcode-cn.com/problems/minimum-falling-path-sum/",
+      "main_body": "矩阵",
+      "solution": "动态规划",
+      "purpose": "求路径最小和",
+      "comment": "路径形成条件: 从上到下隔一行走。",
+      "code": "hello~"
+    },
+    {
+      "topic": "从上到下打印二叉树",
+      "link": "https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/",
+      "main_body": "二叉树",
+      "solution": "层序遍历",
+      "purpose": "求二叉树的所有节点形成的数组",
+      "comment": "数组形成条件: 二叉树层外从上到下、层内从左到右加入节点。",
+      "code": "hello~"
+    }
+  ]
+}
+
