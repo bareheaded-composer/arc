@@ -8,15 +8,6 @@ import (
 )
 
 
-func GetAllUnits(c *gin.Context) {
-	uints, err := GlobalTableManager.GetAllUnits()
-	if err != nil {
-		logs.Error(err)
-		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{"msg": "操作成功。", "data": uints})
-}
 
 
 func InsertUnits(c *gin.Context) {
@@ -44,9 +35,12 @@ func InsertUnits(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"msg": "操作成功。"})
 }
 
-func GetUnitsBySolution(c *gin.Context) {
-	solution := c.Param("solution")
-	uints, err := GlobalTableManager.GetUnitsBySolution(solution)
+func GetUnits(c *gin.Context) {
+	parameter := &model.GetUnitsParameter{
+		MainBody:c.Query("main_body"),
+		Solution:c.Query("solution"),
+	}
+	uints, err := GlobalTableManager.GetUnits(parameter)
 	if err != nil {
 		logs.Error(err)
 		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
@@ -55,13 +49,3 @@ func GetUnitsBySolution(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"msg": "操作成功。", "data": uints})
 }
 
-func GetUnitsByMainBody(c *gin.Context) {
-	mainBody := c.Param("main_body")
-	uints, err := GlobalTableManager.GetUnitsByMainBody(mainBody)
-	if err != nil {
-		logs.Error(err)
-		c.JSON(http.StatusBadRequest, gin.H{"err": err.Error()})
-		return
-	}
-	c.JSON(http.StatusOK, gin.H{"msg": "操作成功。", "data": uints})
-}

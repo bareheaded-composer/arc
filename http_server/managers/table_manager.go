@@ -15,26 +15,13 @@ func NewTableManager(db *gorm.DB) *TableManager {
 		db: db,
 	}
 }
-func (m *TableManager) GetAllUnits() ([]*model.Unit, error) {
+func (m *TableManager) GetUnits(parameter *model.GetUnitsParameter) ([]*model.Unit, error) {
 	var units []*model.Unit
-	if err := m.db.Find(&units, "1 = 1").Error; err != nil && !gorm.IsRecordNotFoundError(err) {
-		logs.Error(err)
-		return nil, err
+	whereSituation := model.Unit{
+		MainBody:parameter.MainBody,
+		Solution:parameter.Solution,
 	}
-	return units, nil
-}
-func (m *TableManager) GetUnitsBySolution(solution string) ([]*model.Unit, error) {
-	var units []*model.Unit
-	if err := m.db.Find(&units, "solution = ?", solution).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
-		logs.Error(err)
-		return nil, err
-	}
-	return units, nil
-}
-
-func (m *TableManager) GetUnitsByMainBody(mainBody string) ([]*model.Unit, error) {
-	var units []*model.Unit
-	if err := m.db.Find(&units, "main_body = ?", mainBody).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
+	if err := m.db.Where(whereSituation).Find(&units).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
 		logs.Error(err)
 		return nil, err
 	}
