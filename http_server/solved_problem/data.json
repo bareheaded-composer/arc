@@ -192,14 +192,6 @@
      "purpose": "求二叉对称性",
      "code": "func isSymmetric(root *TreeNode) bool {\n\tif root==nil{\n\t\treturn true\n\t}\n\treturn isTwoTreeSymmetric(root.Left,root.Right)\n}\n\nfunc isTwoTreeSymmetric(treeA *TreeNode, treeB *TreeNode) bool {\n\tif treeA==nil && treeB==nil{\n\t\treturn true\n\t}\n\tif treeA==nil || treeB==nil{\n\t\treturn false\n\t}\n\treturn treeA.Val==treeB.Val && isTwoTreeSymmetric(treeA.Left,treeB.Right) && isTwoTreeSymmetric(treeA.Right,treeB.Left)\n}"
    },
-   {
-    "topic": "合法二叉搜索树",
-    "link": "https://leetcode-cn.com/problems/legal-binary-search-tree-lcci/",
-    "main_body": "二叉树",
-    "solution": "中序遍历",
-    "purpose": "求二叉搜索性",
-    "code": "func isSymmetric(root *TreeNode) bool {\n\tif root==nil{\n\t\treturn true\n\t}\n\treturn isTwoTreeSymmetric(root.Left,root.Right)\n}\n\nfunc isTwoTreeSymmetric(treeA *TreeNode, treeB *TreeNode) bool {\n\tif treeA==nil && treeB==nil{\n\t\treturn true\n\t}\n\tif treeA==nil || treeB==nil{\n\t\treturn false\n\t}\n\treturn treeA.Val==treeB.Val && isTwoTreeSymmetric(treeA.Left,treeB.Right) && isTwoTreeSymmetric(treeA.Right,treeB.Left)\n}"
-  },
   {
     "topic": "特定深度节点链表",
     "link": "https://leetcode-cn.com/problems/list-of-depth-lcci/",

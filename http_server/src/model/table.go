@@ -11,7 +11,7 @@ type Table interface {
 	GetIdentity()map[string]interface{}
 }
 
-type Unit struct{
+type SolvedProblem struct{
 	gorm.Model
 	Topic    string `json:"topic"`
 	Link     string `json:"link"`
@@ -23,14 +23,14 @@ type Unit struct{
 	Complexity string `json:"complexity"`
 }
 
-func (*Unit) TableName() string{
-	return "unit"
+func (*SolvedProblem) TableName() string{
+	return "solved_problem"
 }
 
-func (u *Unit)  GetIdentity() map[string]interface{}{
+func (s *SolvedProblem)  GetIdentity() map[string]interface{}{
 	return map[string]interface{}{
-		"link":u.Link,
-		"solution":u.Solution,
-		"complexity":u.Complexity,
+		"link":s.Link,
+		"solution":s.Solution,
+		"complexity":s.Complexity,
 	}
 }

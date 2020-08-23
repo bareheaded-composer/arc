@@ -16,28 +16,28 @@ func NewTableManager(db *gorm.DB) *TableManager {
 	}
 }
 
-func (m *TableManager) GetUnits(parameter *model.GetUnitsParameter) ([]*model.Unit, error) {
-	var units []*model.Unit
-	whereSituation := model.Unit{
-		MainBody:parameter.MainBody,
-		Solution:parameter.Solution,
+func (m *TableManager) GetSolvedProblems(parameter *model.GetSolvedProblemsParameter) ([]*model.SolvedProblem, error) {
+	var problems []*model.SolvedProblem
+	whereSituation := model.SolvedProblem{
+		MainBody: parameter.MainBody,
+		Solution: parameter.Solution,
 	}
-	if err := m.db.Where(whereSituation).Find(&units).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
+	if err := m.db.Where(whereSituation).Find(&problems).Error; err != nil && !gorm.IsRecordNotFoundError(err) {
 		logs.Error(err)
 		return nil, err
 	}
-	return units, nil
+	return problems, nil
 }
 
-func (m *TableManager) GetPurposes(parameter *model.GetUnitsParameter) ([]string, error) {
-	units,err := m.GetUnits(parameter)
-	if err!=nil{
+func (m *TableManager) GetPurposes(parameter *model.GetSolvedProblemsParameter) ([]string, error) {
+	units, err := m.GetSolvedProblems(parameter)
+	if err != nil {
 		logs.Error(err)
-		return nil,err
+		return nil, err
 	}
 	var purpose []string
-	for _,uint:=range units{
-		purpose = append(purpose,uint.Purpose)
+	for _, unit := range units {
+		purpose = append(purpose, unit.Purpose)
 	}
 	return purpose, nil
 }

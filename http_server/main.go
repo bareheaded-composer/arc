@@ -58,8 +58,8 @@ func InitTableManager() {
 
 func main() {
 	r := gin.Default()
-	r.POST("/unit", handlers.InsertUnits)
-	r.GET("/unit", handlers.GetUnits)
+	r.POST("/solved_problem", handlers.InsertSolvedProblems)
+	r.GET("/solved_problem", handlers.GetSolvedProblems)
 	if err := r.Run(fmt.Sprintf(":%d", env.Conf.Http.Port)); err != nil {
 		logs.Error("Running go http server failed. :|")
 		return

@@ -1,7 +1,7 @@
 package model
 
 
-type FormOfInsertUnit struct {
+type FormOfInsertSolvedProblem struct {
 	Topic    string `json:"topic"`
 	Link     string `json:"link"`
 	MainBody string `json:"main_body"`

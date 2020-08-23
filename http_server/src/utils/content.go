@@ -10,15 +10,15 @@ import (
 )
 
 
-func MakeUnitsToFile(targetFileDir string, templateFilePath string, units ...*model.Unit) error {
-	for _,unit := range units{
-		contentBuffer, err := GetContentBuffer(templateFilePath, unit)
+func MakeSolvedProblemToFile(targetFileDir string, templateFilePath string, problems ...*model.SolvedProblem) error {
+	for _,problem := range problems{
+		contentBuffer, err := GetContentBuffer(templateFilePath, problem)
 		if err != nil {
 			logs.Error(err)
 			return err
 		}
 		if err := ioutil.WriteFile(
-			fmt.Sprintf("%s/%s_%s_O(%s).md", targetFileDir, unit.Purpose,unit.Solution,unit.Complexity),
+			fmt.Sprintf("%s/%s_%s_O(%s).md", targetFileDir, problem.Purpose,problem.Solution,problem.Complexity),
 			contentBuffer.Bytes(),
 			0777,
 		); err != nil {
